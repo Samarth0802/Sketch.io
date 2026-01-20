@@ -9,6 +9,14 @@ html, body {
   height: 100%;
 }
 
+@keyframes floating {
+  from {
+    transform: translateY(10px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
 @keyframes inwards {
   from {
     opacity: 0;
@@ -80,6 +88,7 @@ body .full-page .content {
 body .full-page .content h1 {
   font-size: clamp(40px, 10vw, 100px);
   text-shadow: 2px 2px 0 rgb(169, 120, 169), 4px 4px 0 rgb(185, 11, 185), 6px 6px 0 rgb(169, 120, 169);
+  animation: floating 2s infinite ease-in alternate;
 }
 @media (max-width: 768px) {
   body .full-page .content h1 {
