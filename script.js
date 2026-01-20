@@ -19,3 +19,10 @@ document.addEventListener('keydown',(e)=>{
         },500)
     }   
 })
+// script.js mein ye add karo
+
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
