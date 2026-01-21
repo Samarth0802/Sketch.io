@@ -3,9 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Sketch.io - Dom-only visual editor</title>
+    <link rel="shortcut icon" href="./icons/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="style2.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Welcome</h1>
+    
+    <div class="left-side">
+        <div class="top">
+            <img src="./icons/favicon-32x32.png" alt="logo">
+            <i class="ri-close-fill close-btn"></i>
+        </div>
+        
+        <div class="project-name">
+            <input type="text" value="Untitled" id="projectName" autocomplete="off">
+            <div class="content">
+                <p class="drafts">Drafts</p>
+                <p class="Free">Free</p>
+            </div>
+        </div>
+        
+        <div class="fileassets">
+            <div class="tab active">File</div>
+            <div class="tab">Assets</div>
+        </div>
+        
+        <div class="page-part">
+            <div class="page-top">
+                <h3>
+                    <i class="ri-arrow-down-s-line"></i>
+                    Pages
+                </h3>
+                <i class="ri-add-line"></i>
+            </div>
+            <div class="pages-number active">Page 1</div>
+        </div>
+        
+        <div class="layer-part">
+            <div class="layer-top">
+                <h3>Layers</h3>
+                <i class="ri-search-line"></i>
+            </div>
+            <div class="layer-list">
+                <p class="empty-state">No layers yet</p>
+            </div>
+        </div>
+    </div>
+    <i class="ri-bar-chart-horizontal-line open-btn"></i>
+    <div class="middle-part">
+        <div class="tools">
+            <i class="ri-rectangle-line rectangle active"></i>
+            <i class="ri-text-block text-box"></i>
+        </div>
+    </div>
+    
+    <div class="right-side">
+        <div class="heading">
+            <h1>Editing Kit</h1>
+            <div class="designPrototype">
+                <h2 class="active design">Design</h2>
+                <h2 class="prototype">Prototype</h2>
+            </div>
+        </div>
+        
+        <div class="form-part">
+            <div class="section">
+                <label for="page-color">Page</label>
+                <div class="input-group">
+                    <div class="color-box" id="pageColorBox"></div>
+                    <input type="text" id="page-color" class="pageColor" value="000000">
+                    <input type="number" id="page-color" class='pageOpacity' value="100">
+                    <span>%</span>
+                    <i class="ri-eye-line"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="actions-part">
+            <button class="save-btn" id="saveBtn">
+                <i class="ri-save-line"></i>
+                Save Project
+            </button>
+            
+            <details class="export-section">
+                <summary>
+                    <span>Export Design</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                </summary>
+                <div class="export-options">
+                    <button id="exportJSON">
+                        <i class="ri-file-code-line"></i>
+                        Export as JSON
+                    </button>
+                    <button id="exportHTML">
+                        <i class="ri-file-text-line"></i>
+                        Export as HTML
+                    </button>
+                </div>
+            </details>
+        </div>
+    </div>
+    
+    <script type="module" src="script2.js"></script>
 </body>
 </html>

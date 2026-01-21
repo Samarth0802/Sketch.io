@@ -7,7 +7,7 @@ enterBtn.addEventListener('click',()=>{
     extraHeading.classList.add('out')
     setTimeout(() => {
         window.location.href = 'index2.html'  //Like this added beacuse the animation will be missed otherwise.
-    }, 900);
+    }, 500);
 })
 
 document.addEventListener('keydown',(e)=>{
