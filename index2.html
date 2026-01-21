@@ -50,11 +50,13 @@
             </div>
         </div>
     </div>
+    
     <i class="ri-bar-chart-horizontal-line open-btn"></i>
-    <div class="middle-part">
+    
+    <div class="middle-part" id="canvas">
         <div class="tools">
-            <i class="ri-rectangle-line rectangle active"></i>
-            <i class="ri-text-block text-box"></i>
+            <i class="ri-rectangle-line rectangle active" data-tool="rectangle"></i>
+            <i class="ri-text-block text-box" data-tool="text"></i>
         </div>
     </div>
     
@@ -72,15 +74,46 @@
                 <label for="page-color">Page</label>
                 <div class="input-group">
                     <div class="color-box" id="pageColorBox"></div>
-                    <input type="text" id="page-color" class="pageColor" value="000000">
-                    <input type="number" id="page-color" class='pageOpacity' value="100">
+                    <input type="text" id="page-color" class="pageColor" value="000000" autocomplete="off">
+                    <input type="number" id="page-opacity" class='pageOpacity' value="100" min="0" max="100">
                     <span>%</span>
                     <i class="ri-eye-line"></i>
+                </div>
+            </div>
+            
+            
+            <div class="section element-props" id="elementProps" style="display: none;">
+                <label>Element Properties</label>
+                
+                <div class="prop-row">
+                    <label for="elem-width" class="small-label">Width</label>
+                    <input type="number" id="elem-width" class="prop-input" min="20">
+                </div>
+                
+                <div class="prop-row">
+                    <label for="elem-height" class="small-label">Height</label>
+                    <input type="number" id="elem-height" class="prop-input" min="20">
+                </div>
+                
+                <div class="prop-row">
+                    <label for="elem-bg-color" class="small-label">Background</label>
+                    <input type="text" id="elem-bg-color" class="prop-input" placeholder="667eea">
+                </div>
+                
+                <div class="prop-row" id="textContentRow" style="display: none;">
+                    <label for="elem-text" class="small-label">Text</label>
+                    <input type="text" id="elem-text" class="prop-input" placeholder="Enter text">
+                </div>
+                
+                <div class="prop-row">
+                    <label for="elem-rotation" class="small-label">Rotation</label>
+                    <input type="number" id="elem-rotation" class="prop-input" min="0" max="360" value="0">
                 </div>
             </div>
         </div>
         
         <div class="actions-part">
+            
             <button class="save-btn" id="saveBtn">
                 <i class="ri-save-line"></i>
                 Save Project
