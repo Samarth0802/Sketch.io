@@ -18,7 +18,9 @@ const elementProps = document.querySelector('#elementProps')
 const elemWidth = document.querySelector('#elem-width')
 const elemHeight = document.querySelector('#elem-height')
 const elemBgColor = document.querySelector('#elem-bg-color')
+const elemTextColor = document.querySelector('#elem-text-color')
 const elemRotation = document.querySelector('#elem-rotation')
+const textColorRow = document.querySelector('#textColorRow')
 
 let elements = []
 let selectedElement = null
@@ -81,6 +83,7 @@ function createElement(type, x = 100, y = 100) {
     width: type === 'text' ? 150 : 120,
     height: type === 'text' ? 50 : 120,
     backgroundColor: type === 'text' ? 'transparent' : 'F5DEB3',
+    textColor: 'FFFFFF',
     text: type === 'text' ? 'Double click to edit' : '',
     rotation: 0,
     zIndex: elements.length
@@ -115,7 +118,8 @@ function renderElement(element) {
   } else if (element.type === 'text') {
     div.textContent = element.text
     div.contentEditable = false
-    div.style.backgroundColor = 'transparent'
+    div.style.backgroundColor = `#${element.backgroundColor}`
+    div.style.color = `#${element.textColor || 'FFFFFF'}`
   }
   
   div.addEventListener('mousedown', handleElementMouseDown)
@@ -190,6 +194,13 @@ function updatePropertiesPanel() {
   elemHeight.value = element.height
   elemBgColor.value = element.backgroundColor
   elemRotation.value = element.rotation
+  
+  if (element.type === 'text') {
+    textColorRow.style.display = 'flex'
+    elemTextColor.value = element.textColor || 'FFFFFF'
+  } else {
+    textColorRow.style.display = 'none'
+  }
 }
 
 function updateLayersList() {
@@ -481,8 +492,12 @@ function handlePropertyChange(e) {
       break
     case 'elem-bg-color':
       element.backgroundColor = e.target.value.replace('#', '')
-      if (element.type === 'rectangle') {
-        el.style.backgroundColor = `#${element.backgroundColor}`
+      el.style.backgroundColor = `#${element.backgroundColor}`
+      break
+    case 'elem-text-color':
+      element.textColor = e.target.value.replace('#', '')
+      if (element.type === 'text') {
+        el.style.color = `#${element.textColor}`
       }
       break
     case 'elem-rotation':
@@ -545,7 +560,7 @@ function exportToHTML() {
       html += `    <div class="element" style="${styles} background-color: #${element.backgroundColor};"></div>
 `
     } else if (element.type === 'text') {
-      html += `    <div class="element" style="${styles} color: white; display: flex; align-items: center; justify-content: center; font-size: 16px; padding: 8px;">${element.text}</div>
+      html += `    <div class="element" style="${styles} background-color: #${element.backgroundColor}; color: #${element.textColor || 'FFFFFF'}; display: flex; align-items: center; justify-content: center; font-size: 16px; padding: 8px;">${element.text}</div>
 `
     }
   })
@@ -601,6 +616,7 @@ function setupEvents() {
   elemWidth.addEventListener('input', handlePropertyChange)
   elemHeight.addEventListener('input', handlePropertyChange)
   elemBgColor.addEventListener('input', handlePropertyChange)
+  elemTextColor.addEventListener('input', handlePropertyChange)
   elemRotation.addEventListener('input', handlePropertyChange)
   
   exportJSONBtn.addEventListener('click', exportToJSON)
