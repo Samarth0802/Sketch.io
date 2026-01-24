@@ -22,6 +22,19 @@ const elemTextColor = document.querySelector('#elem-text-color')
 const elemRotation = document.querySelector('#elem-rotation')
 const textColorRow = document.querySelector('#textColorRow')
 
+// Color palette elements
+const pageColorPalette = document.querySelector('#pageColorPalette')
+const pageColorPicker = document.querySelector('#pageColorPicker')
+const closePalette = document.querySelector('#closePalette')
+const elemColorPalette = document.querySelector('#elemColorPalette')
+const elemColorPicker = document.querySelector('#elemColorPicker')
+const closeElemPalette = document.querySelector('#closeElemPalette')
+const textColorPalette = document.querySelector('#textColorPalette')
+const textColorPicker = document.querySelector('#textColorPicker')
+const closeTextPalette = document.querySelector('#closeTextPalette')
+const elemColorBox = document.querySelector('#elemColorBox')
+const elemTextColorBox = document.querySelector('#elemTextColorBox')
+
 let elements = []
 let selectedElement = null
 let currentTool = null
@@ -198,9 +211,16 @@ function updatePropertiesPanel() {
   elemBgColor.value = element.backgroundColor
   elemRotation.value = element.rotation
   
+  if (elemColorBox) {
+    elemColorBox.style.backgroundColor = `#${element.backgroundColor}`
+  }
+  
   if (element.type === 'text') {
     textColorRow.style.display = 'flex'
     elemTextColor.value = element.textColor || 'FFFFFF'
+    if (elemTextColorBox) {
+      elemTextColorBox.style.backgroundColor = `#${element.textColor || 'FFFFFF'}`
+    }
   } else {
     textColorRow.style.display = 'none'
   }
@@ -592,6 +612,106 @@ function setupEvents() {
   pageColor.addEventListener('input', updateMiddleBackground)
   pageOpacity.addEventListener('input', updateMiddleBackground)
   saveBtn.addEventListener('click', saveStorage)
+  
+  // Color palette events
+  colorBox.addEventListener('click', () => {
+    pageColorPalette.style.display = pageColorPalette.style.display === 'none' ? 'block' : 'none'
+    elemColorPalette.style.display = 'none'
+    textColorPalette.style.display = 'none'
+  })
+  
+  closePalette.addEventListener('click', () => {
+    pageColorPalette.style.display = 'none'
+  })
+  
+  pageColorPicker.addEventListener('input', (e) => {
+    const hex = e.target.value.replace('#', '')
+    pageColor.value = hex
+    updateMiddleBackground()
+  })
+  
+  document.querySelectorAll('#pageColorPalette .preset-color').forEach(color => {
+    color.addEventListener('click', () => {
+      const hex = color.dataset.color
+      pageColor.value = hex
+      pageColorPicker.value = `#${hex}`
+      updateMiddleBackground()
+    })
+  })
+  
+  if (elemColorBox) {
+    elemColorBox.addEventListener('click', () => {
+      elemColorPalette.style.display = elemColorPalette.style.display === 'none' ? 'block' : 'none'
+      pageColorPalette.style.display = 'none'
+      textColorPalette.style.display = 'none'
+    })
+  }
+  
+  if (closeElemPalette) {
+    closeElemPalette.addEventListener('click', () => {
+      elemColorPalette.style.display = 'none'
+    })
+  }
+  
+  if (elemColorPicker) {
+    elemColorPicker.addEventListener('input', (e) => {
+      const hex = e.target.value.replace('#', '')
+      elemBgColor.value = hex
+      handlePropertyChange({ target: elemBgColor })
+      if (elemColorBox) {
+        elemColorBox.style.backgroundColor = `#${hex}`
+      }
+    })
+  }
+  
+  document.querySelectorAll('#elemColorPalette .preset-color').forEach(color => {
+    color.addEventListener('click', () => {
+      const hex = color.dataset.color
+      elemBgColor.value = hex
+      elemColorPicker.value = `#${hex}`
+      handlePropertyChange({ target: elemBgColor })
+      if (elemColorBox) {
+        elemColorBox.style.backgroundColor = `#${hex}`
+      }
+    })
+  })
+  
+  if (elemTextColorBox) {
+    elemTextColorBox.addEventListener('click', () => {
+      textColorPalette.style.display = textColorPalette.style.display === 'none' ? 'block' : 'none'
+      pageColorPalette.style.display = 'none'
+      elemColorPalette.style.display = 'none'
+    })
+  }
+  
+  if (closeTextPalette) {
+    closeTextPalette.addEventListener('click', () => {
+      textColorPalette.style.display = 'none'
+    })
+  }
+  
+  if (textColorPicker) {
+    textColorPicker.addEventListener('input', (e) => {
+      const hex = e.target.value.replace('#', '')
+      elemTextColor.value = hex
+      handlePropertyChange({ target: elemTextColor })
+      if (elemTextColorBox) {
+        elemTextColorBox.style.backgroundColor = `#${hex}`
+      }
+    })
+  }
+  
+  document.querySelectorAll('#textColorPalette .preset-color').forEach(color => {
+    color.addEventListener('click', () => {
+      const hex = color.dataset.color
+      elemTextColor.value = hex
+      textColorPicker.value = `#${hex}`
+      handlePropertyChange({ target: elemTextColor })
+      if (elemTextColorBox) {
+        elemTextColorBox.style.backgroundColor = `#${hex}`
+      }
+    })
+  })
   
   closeBtn.addEventListener('click', () => {
     leftSide.style.transform = 'translateX(-100%)'

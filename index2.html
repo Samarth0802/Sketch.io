@@ -61,7 +61,7 @@
             </div>
             <div class="tool-item">
                 <i class="ri-text-block text-box" data-tool="text"></i>
-                <span>Text Box</span>
+                <span>Text</span>
             </div>
         </div>
     </div>
@@ -85,6 +85,32 @@
                     <span>%</span>
                     <i class="ri-eye-line"></i>
                 </div>
+                
+                <div class="color-palette" id="pageColorPalette" style="display: none;">
+                    <div class="palette-header">
+                        <span>Select Color</span>
+                        <i class="ri-close-line" id="closePalette"></i>
+                    </div>
+                    <input type="color" id="pageColorPicker" value="#000000">
+                    <div class="preset-colors">
+                        <div class="preset-color" data-color="000000" style="background-color: #000000;"></div>
+                        <div class="preset-color" data-color="FFFFFF" style="background-color: #FFFFFF;"></div>
+                        <div class="preset-color" data-color="FF0000" style="background-color: #FF0000;"></div>
+                        <div class="preset-color" data-color="00FF00" style="background-color: #00FF00;"></div>
+                        <div class="preset-color" data-color="0000FF" style="background-color: #0000FF;"></div>
+                        <div class="preset-color" data-color="FFFF00" style="background-color: #FFFF00;"></div>
+                        <div class="preset-color" data-color="FF00FF" style="background-color: #FF00FF;"></div>
+                        <div class="preset-color" data-color="00FFFF" style="background-color: #00FFFF;"></div>
+                        <div class="preset-color" data-color="FFA500" style="background-color: #FFA500;"></div>
+                        <div class="preset-color" data-color="800080" style="background-color: #800080;"></div>
+                        <div class="preset-color" data-color="FFC0CB" style="background-color: #FFC0CB;"></div>
+                        <div class="preset-color" data-color="A52A2A" style="background-color: #A52A2A;"></div>
+                        <div class="preset-color" data-color="808080" style="background-color: #808080;"></div>
+                        <div class="preset-color" data-color="C0C0C0" style="background-color: #C0C0C0;"></div>
+                        <div class="preset-color" data-color="FFD700" style="background-color: #FFD700;"></div>
+                        <div class="preset-color" data-color="4B0082" style="background-color: #4B0082;"></div>
+                    </div>
+                </div>
             </div>
             
             <div class="section element-props" id="elementProps" style="display: none;">
@@ -101,13 +127,71 @@
                 </div>
                 
                 <div class="prop-row">
-                    <label for="elem-bg-color" class="small-label">Background</label>
-                    <input type="text" id="elem-bg-color" class="prop-input" placeholder="667eea" autocomplete="off">
+                    <label for="elem-bg-color" class="small-label">Background &nbsp;</label>
+                    <div class="color-input-wrapper">
+                        <div class="elem-color-box" id="elemColorBox"></div>
+                        <input type="text" id="elem-bg-color" class="prop-input" placeholder="667eea" autocomplete="off">
+                    </div>
+                </div>
+                
+                <div class="color-palette elem-palette" id="elemColorPalette" style="display: none;">
+                    <div class="palette-header">
+                        <span>Select Color</span>
+                        <i class="ri-close-line" id="closeElemPalette"></i>
+                    </div>
+                    <input type="color" id="elemColorPicker" value="#667eea">
+                    <div class="preset-colors">
+                        <div class="preset-color" data-color="000000" style="background-color: #000000;"></div>
+                        <div class="preset-color" data-color="FFFFFF" style="background-color: #FFFFFF;"></div>
+                        <div class="preset-color" data-color="FF0000" style="background-color: #FF0000;"></div>
+                        <div class="preset-color" data-color="00FF00" style="background-color: #00FF00;"></div>
+                        <div class="preset-color" data-color="0000FF" style="background-color: #0000FF;"></div>
+                        <div class="preset-color" data-color="FFFF00" style="background-color: #FFFF00;"></div>
+                        <div class="preset-color" data-color="FF00FF" style="background-color: #FF00FF;"></div>
+                        <div class="preset-color" data-color="00FFFF" style="background-color: #00FFFF;"></div>
+                        <div class="preset-color" data-color="FFA500" style="background-color: #FFA500;"></div>
+                        <div class="preset-color" data-color="800080" style="background-color: #800080;"></div>
+                        <div class="preset-color" data-color="FFC0CB" style="background-color: #FFC0CB;"></div>
+                        <div class="preset-color" data-color="A52A2A" style="background-color: #A52A2A;"></div>
+                        <div class="preset-color" data-color="808080" style="background-color: #808080;"></div>
+                        <div class="preset-color" data-color="C0C0C0" style="background-color: #C0C0C0;"></div>
+                        <div class="preset-color" data-color="FFD700" style="background-color: #FFD700;"></div>
+                        <div class="preset-color" data-color="667eea" style="background-color: #667eea;"></div>
+                    </div>
                 </div>
                 
                 <div class="prop-row" id="textColorRow" style="display: none;">
-                    <label for="elem-text-color" class="small-label">Text Color</label>
-                    <input type="text" id="elem-text-color" class="prop-input" placeholder="FFFFFF" autocomplete="off">
+                    <label for="elem-text-color" class="small-label">Text Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <div class="color-input-wrapper">
+                        <div class="elem-text-color-box" id="elemTextColorBox"></div>
+                        <input type="text" id="elem-text-color" class="prop-input" placeholder="FFFFFF" autocomplete="off">
+                    </div>
+                </div>
+                
+                <div class="color-palette text-palette" id="textColorPalette" style="display: none;">
+                    <div class="palette-header">
+                        <span>Select Text Color</span>
+                        <i class="ri-close-line" id="closeTextPalette"></i>
+                    </div>
+                    <input type="color" id="textColorPicker" value="#FFFFFF">
+                    <div class="preset-colors">
+                        <div class="preset-color" data-color="000000" style="background-color: #000000;"></div>
+                        <div class="preset-color" data-color="FFFFFF" style="background-color: #FFFFFF;"></div>
+                        <div class="preset-color" data-color="FF0000" style="background-color: #FF0000;"></div>
+                        <div class="preset-color" data-color="00FF00" style="background-color: #00FF00;"></div>
+                        <div class="preset-color" data-color="0000FF" style="background-color: #0000FF;"></div>
+                        <div class="preset-color" data-color="FFFF00" style="background-color: #FFFF00;"></div>
+                        <div class="preset-color" data-color="FF00FF" style="background-color: #FF00FF;"></div>
+                        <div class="preset-color" data-color="00FFFF" style="background-color: #00FFFF;"></div>
+                        <div class="preset-color" data-color="FFA500" style="background-color: #FFA500;"></div>
+                        <div class="preset-color" data-color="800080" style="background-color: #800080;"></div>
+                        <div class="preset-color" data-color="FFC0CB" style="background-color: #FFC0CB;"></div>
+                        <div class="preset-color" data-color="A52A2A" style="background-color: #A52A2A;"></div>
+                        <div class="preset-color" data-color="808080" style="background-color: #808080;"></div>
+                        <div class="preset-color" data-color="C0C0C0" style="background-color: #C0C0C0;"></div>
+                        <div class="preset-color" data-color="FFD700" style="background-color: #FFD700;"></div>
+                        <div class="preset-color" data-color="4B0082" style="background-color: #4B0082;"></div>
+                    </div>
                 </div>
                 
                 <div class="prop-row">
