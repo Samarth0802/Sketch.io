@@ -326,7 +326,7 @@ body .middle-part {
   overflow: hidden;
 }
 body .middle-part .tools {
-  padding: 25px 30px;
+  padding: 20px 25px;
   height: auto;
   background-color: rgba(128, 128, 128, 0.429);
   border: 1px solid rgb(231, 231, 231);
@@ -336,10 +336,22 @@ body .middle-part .tools {
   transform: translateX(-50%);
   border-radius: 5px;
   display: flex;
-  gap: 20px;
-  z-index: 2;
+  gap: 25px;
+  z-index: 9999;
   align-items: center;
   animation: tools 0.6s ease-in;
+}
+body .middle-part .tools .tool-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+body .middle-part .tools .tool-item span {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: capitalize;
 }
 body .middle-part .tools i {
   color: white;
@@ -347,6 +359,7 @@ body .middle-part .tools i {
   padding: 4px 8px;
   border-radius: 5px;
   font-weight: 200;
+  transition: all 0.2s ease;
 }
 body .middle-part .tools i:hover {
   background-color: #1a1a1a;
@@ -562,8 +575,8 @@ body .right-side .actions-part .export-section .export-options button i {
   position: absolute;
   cursor: move;
   -webkit-user-select: none;
-  -moz-user-select: none;
-       user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .canvas-element.selected {
   outline: 2px solid #667eea;

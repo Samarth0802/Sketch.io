@@ -24,7 +24,7 @@ const textColorRow = document.querySelector('#textColorRow')
 
 let elements = []
 let selectedElement = null
-let currentTool = 'rectangle'
+let currentTool = null
 let elementIdCounter = 1
 let isDragging = false
 let isResizing = false
@@ -112,6 +112,7 @@ function renderElement(element) {
   div.style.height = `${element.height}px`
   div.style.zIndex = element.zIndex
   div.style.transform = `rotate(${element.rotation}deg)`
+  div.style.cursor = 'move'
   
   if (element.type === 'rectangle') {
     div.style.backgroundColor = `#${element.backgroundColor}`
@@ -139,6 +140,7 @@ function selectElement(elementId) {
     const prevEl = document.getElementById(selectedElement)
     if (prevEl) {
       prevEl.classList.remove('selected')
+      prevEl.style.cursor = 'move'
       removeResizeHandles()
     }
   }
@@ -149,6 +151,7 @@ function selectElement(elementId) {
     const el = document.getElementById(elementId)
     if (el) {
       el.classList.add('selected')
+      el.style.cursor = 'grab'
       addResizeHandles(el)
       updatePropertiesPanel()
     }
@@ -289,13 +292,15 @@ function handleElementMouseDown(e) {
   if (e.target.classList.contains('resize-handle')) return
   
   e.stopPropagation()
-  selectElement(e.currentTarget.id)
+  const elem = e.currentTarget
+  elem.style.cursor = 'grabbing'
+  selectElement(elem.id)
   
   isDragging = true
   dragStartX = e.clientX
   dragStartY = e.clientY
   
-  const element = elements.find(el => el.id === e.currentTarget.id)
+  const element = elements.find(el => el.id === elem.id)
   if (element) {
     dragStartX = e.clientX - element.x
     dragStartY = e.clientY - element.y
@@ -400,6 +405,12 @@ function handleMouseMove(e) {
 }
 
 function handleMouseUp() {
+  if (isDragging && selectedElement) {
+    const el = document.getElementById(selectedElement)
+    if (el) {
+      el.style.cursor = 'grab'
+    }
+  }
   isDragging = false
   isResizing = false
   resizeHandle = null
